@@ -6,7 +6,6 @@ from flask import Flask
 from threading import Thread
 import os
 
-# Flask pro Railway
 app = Flask('')
 @app.route('/')
 def home():
@@ -17,7 +16,7 @@ def keep_alive():
     t.daemon = True
     t.start()
 
-# Credenciais da API do Twitter/X (do @PoetryBotMarcos)
+# Credenciais da API 
 API_KEY = "aVbJtp8RGp5k5L5nvgZ3JLjaC"
 API_SECRET = "18xqJmEhw7js2IVOs4KbHUHql31ze4g0hOVDHDkxLIWk4FlML1"
 ACCESS_TOKEN = "1909005048925106176-nsAB47Ftw0niVqDhIjzdIhJeZtPqyx"
@@ -27,7 +26,6 @@ auth = tweepy.OAuth1UserHandler(API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_
 api = tweepy.API(auth)
 client = tweepy.Client(consumer_key=API_KEY, consumer_secret=API_SECRET, access_token=ACCESS_TOKEN, access_token_secret=ACCESS_TOKEN_SECRET)
 
-# Carregar poemas
 with open('conteudo.json', 'r', encoding='utf-8') as file:
     conteudo = json.load(file)
 
@@ -49,7 +47,7 @@ def postar_tweet():
     except tweepy.TweepyException as e:
         if e.response and e.response.status_code == 429:
             print("Erro 429: Limite atingido. Esperando 15 minutos...")
-            time.sleep(900)  # 15 min
+            time.sleep(900)  # 15 min (elon musk viadao)
         else:
             print(f"Erro ao postar: {e}")
             time.sleep(60)
